@@ -1,0 +1,16 @@
+# Ignore Dataset (Keep data local)
+brain_tumor_dataset/
+*.jpg
+*.png
+*.jpeg
+
+# Ignore Python Cache
+__pycache__/
+*.pyc
+
+# Ignore Trained Models (Too big for Git)
+checkpoints/
+*.pth
+
+# Ignore System Files
+.DS_Store
