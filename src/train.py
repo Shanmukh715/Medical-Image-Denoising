@@ -14,8 +14,8 @@ EPOCHS = 100         # Deep training
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # !!! UPDATE THIS PATH TO YOUR ACTUAL FOLDER !!!
-DATASET_PATH = r"C:\Users\shanm\OneDrive\Desktop\coding\Project\SEM 3 AND 4\SEM 4\Maths\brain_tumor_dataset\yes"
-
+# Automatically finds the 'brain_tumor_dataset/yes' folder in your project
+DATASET_PATH = os.path.join(os.getcwd(), "brain_tumor_dataset", "yes")
 class MRIDataset(Dataset):
     def __init__(self, root_dir):
         self.root_dir = root_dir
@@ -50,7 +50,8 @@ def train():
         return
 
     dataset = MRIDataset(DATASET_PATH)
-    dataloader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=True, num_workers=4)
+    # Set num_workers to 0 to fix the freezing issue on Windows
+    dataloader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=True, num_workers=0)
     
     model = DeepUnrolledADMM(stages=8).to(DEVICE)
     optimizer = optim.AdamW(model.parameters(), lr=LEARNING_RATE)
