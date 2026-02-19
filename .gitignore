@@ -1,16 +1,22 @@
-# Ignore Dataset (Keep data local)
+# Ignore Dataset (Keep data local to avoid huge uploads)
 brain_tumor_dataset/
+
+# Ignore all image types by default (to prevent accidental dataset uploads)
 *.jpg
 *.png
 *.jpeg
 
-# Ignore Python Cache
+# Ignore Python Cache and System Files
 __pycache__/
 *.pyc
+.DS_Store
 
 # Ignore Trained Models (Too big for Git)
 checkpoints/
 *.pth
 
-# Ignore System Files
-.DS_Store
+# --- EXCEPTIONS: FORCE GIT TO TRACK THESE RESULTS ---
+# These lines override the "Ignore all images" rule above
+!result_image_*.png
+!results/*.png
+!results/*.jpg
